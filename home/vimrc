@@ -1,0 +1,216 @@
+set nocompatible
+
+" -----------------------
+" config for vundle
+" -----------------------
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" L9 has need for FuzzyFinder
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+
+Bundle 'neocomplcache'
+Bundle 'gtags.vim'
+
+" for sytax highlight of twig
+Bundle 'django.vim'
+
+" for faster execution
+Bundle 'quickrun.vim'
+
+" for git
+Bundle 'tpope/vim-fugitive'
+
+" for svn
+Bundle 'vcscommand.vim'
+
+" easier to comment
+Bundle 'scrooloose/nerdcommenter'
+
+Bundle 'kien/ctrlp.vim'
+
+Bundle 'Shougo/vimproc'
+
+Bundle 'scrooloose/syntastic'
+
+Bundle "Shougo/unite.vim"
+
+" insert modeで開始
+" let g:unite_enable_start_insert = 0
+
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+
+" grep検索
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer -default-action=tabopen<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer -default-action=tabopen<CR><C-R><C-W>
+
+" unite grep で候補を選択した時にタブで開くようにする
+"call unite#custom_default_action('grep', 'tabopen')
+
+
+
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+let g:quickrun_config = {
+    \   "_" : {
+    \       "runner" : "vimproc",
+    \       "runner/vimproc/updatetime" : 40,
+    \       "running_mark": ">>>",
+    \       "hook/time/enable": 1,
+    \       "outputter/quickfix": "&errorformat",
+    \}
+\}
+
+"Bundle 'rails.vim'
+filetype plugin indent on
+
+colorscheme elflord
+hi Function term=bold ctermfg=Brown guifg=Brown
+
+" 特殊文字があると表示がずれる問題の対策
+" のはずが、有効にすると悲惨なことに
+set ambiwidth=double
+
+" -----------------------
+" nerdcommenter
+" -----------------------
+" コメントした後に挿入するスペース数
+let NERDSpaceDelims = 1
+nmap ,, <Plug>NERDCommenterToggle
+vmap ,, <Plug>NERDCommenterToggle
+
+" -----------------------
+" FuzzyFinder.vim
+" -----------------------
+" need for FufMruFile
+let g:fuf_modesDisable = []
+
+nnoremap <Space>f f
+nnoremap <Space>F F
+nnoremap f <Nop>
+nnoremap <silent> fc :<C-u>FufRenewCache!<CR>
+nnoremap <silent> fb :<C-u>FufBuffer!<CR>
+nnoremap <silent> ff :<C-u>FufFile!<C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+nnoremap <silent> fm :<C-u>FufMruFile!<CR>
+nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
+nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile!<C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
+nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
+
+" -----------------------
+" gtags
+" -----------------------
+map <C-g> :Gtags
+map <C-i> :Gtags -f %<CR>
+map <C-j> :GtagsCursor<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+
+
+let g:neocomplcache_enable_at_startup = 1
+
+syntax on
+filetype plugin on
+filetype indent on
+
+
+set viminfo='50,\"4000,:0,n~/.viminfo
+
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp,cp932
+set fileformats=unix,dos,mac
+
+set backspace=indent,eol,start
+set formatoptions+=m
+set list
+set listchars=tab:>-,extends:<,trail:-
+set hidden
+
+set wildmenu
+set showmatch
+
+set wrapscan
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+set autoindent
+set smartindent
+set expandtab
+set smarttab
+
+"スワップファイルの出力先を ~/.vim/tmp/swap に変更
+set directory=~/tmp/vim/swap
+
+"set tabstop=4
+"set softtabstop=4
+"set shiftwidth=4
+
+set laststatus=2
+set statusline=[%n]\ %t\ %y%{GetStatusEx()}\ %m%h%r=%l/%L,%c%V\ %P
+
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue
+match ZenkakuSpace /　/
+
+"inoremap <C-t> <C-v><Tab>
+"inoremap <C-j> <Down>
+"inoremap <C-k> <Up>
+"inoremap <C-h> <Left>
+"inoremap <C-l> <Right>
+
+"nnoremap <C-l> <ESC>:ls<CR>
+"nnoremap <C-p> <ESC>:bp<CR>
+"nnoremap <C-n> <ESC>:bn<CR>
+
+" ノーマルモードのまま空行を入れる
+" キーバインドが重なっているのでコメントアウト
+"nnoremap <C-o> :<C-u>call append(expand('.'), '')<Cr>
+
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+
+nnoremap ,.  :<C-u>edit $MYVIMRC<Enter>
+nnoremap ,s. :<C-u>source $MYVIMRC<Enter>
+
+nnoremap gc `[V`]
+vnoremap gc :<C-u>normal gc<Enter>
+onoremap gc :<C-u>normal gc<Enter>
+
+autocmd FileType php setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType smarty setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+autocmd BufNewFile,BufRead *.twig set syntax=htmldjango
+
+au BufNewFile,BufRead *.cgi  set ft=perl
+au BufNewFile,BufRead *.psgi set ft=perl
+
+function! GetStatusEx()
+    let str = &fileformat
+    if has("multi_byte") && &fileencoding != ""
+        let str = &fileencoding . ":" . str
+    endif
+    let str = "[" . str . "]"
+    return str
+endfunction
+
+"バイナリ編集(xxd)モード（vim -b での起動、もしくは *.bin ファイルを開くと発動します）
+augroup BinaryXXD
+  autocmd!
+  autocmd BufReadPre  *.bin let &binary =1
+  autocmd BufReadPost * if &binary | silent %!xxd -g 1
+  autocmd BufReadPost * set ft=xxd | endif
+  autocmd BufWritePre * if &binary | %!xxd -r | endif
+  autocmd BufWritePost * if &binary | silent %!xxd -g 1
+  autocmd BufWritePost * set nomod | endif
+augroup END

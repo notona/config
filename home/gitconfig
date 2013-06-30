@@ -1,0 +1,7 @@
+[color]
+  ui = auto
+[core]
+  pager = less -r
+  editor = vim
+[alias]
+  st = status -sb

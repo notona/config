@@ -1,0 +1,90 @@
+setopt prompt_subst 
+autoload -Uz compinit
+compinit
+
+autoload bashcompinit
+bashcompinit
+source ~/config/home/git-prompt.sh
+
+autoload colors
+colors
+#PS1='${USER}@${HOST%%.*}z:%~$(__git_ps1 "(git:%s)")%(!.#.$) '
+PS1='%{${fg[green]}%}% ${USER}@${HOST%%.*}:%~%(!.#.$) '
+
+# 補完実行時にエイリアスを展開せずにそのままのコマンドとしてエイリアスを扱う。
+setopt complete_aliases
+
+HISTFILE=~/.zsh_history # コマンド履歴を保存するファイル名
+HISTSIZE=500000         # 記憶される履歴の数
+SAVEHIST=500000         # 保存される履歴の数
+
+setopt share_history     # 履歴を複数端末間で共有する。
+setopt hist_ignore_dups  # 直前のコマンドと同じ場合履歴に追加しない 
+setopt hist_save_no_dups # 重複するコマンドが記憶されるとき、古い方を削除する
+setopt transient_rprompt # 右プロンプトをコマンド実行後に消す
+setopt ignore_eof        # ctrl+d で終了しないように
+
+# 端末のstopに割り当てられているものを無効化する
+# http://www.jp-z.jp/changelog/2006-09-28-2.html
+stty stop undef
+
+# http://subtech.g.hatena.ne.jp/secondlife/20110222/1298354852
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
+
+#右プロンプト
+## %F{～}は色指定、%fでリセット
+## "%(?..%F{red}-%?-)" は終了コードが0以外なら赤色で表示
+## "%1(v|%F{yellow}%1v%F{green} |)" の部分がVCS情報 (psvarの長さが1以上なら黄色で表示)
+RPROMPT="%(?..%F{red}-%?-)%F{green}[%1(v|%F{yellow}%1v%F{green}|)]%f"
+
+#gitブランチ名表示
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats '%c%u%b'
+zstyle ':vcs_info:git:*' actionformats '%c%u%b|%a'
+
+#カレントディレクトリ/コマンド記録
+local _cmd=''
+local _lastdir=''
+preexec() {
+  _cmd="$1"
+  _lastdir="$PWD"
+}
+#git情報更新
+update_vcs_info() {
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+#カレントディレクトリ変更時/git関連コマンド実行時に情報更新
+precmd() {
+  _r=$?
+  case "${_cmd}" in
+    git*|stg*) update_vcs_info ;;
+    *) [ "${_lastdir}" != "$PWD" ] && update_vcs_info ;;
+  esac
+  return $_r
+}
+
+# コマンドの一部から履歴をたどる
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+
+#色の設定
+export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
+export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
+zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
+
+alias ls="ls -F --color"
+alias lv="lv -c"
+alias less="less -r"
+alias diff="diff -u"
+
+# zsh 補完をカーソルで選択する
+zstyle ':completion:*:default' menu select=1
+
+export PATH=$PATH:~/bin
