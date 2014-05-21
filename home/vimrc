@@ -67,11 +67,7 @@ let g:quickrun_config = {
     \}
 \}
 
-"Bundle 'rails.vim'
 filetype plugin indent on
-
-colorscheme elflord
-hi Function term=bold ctermfg=Brown guifg=Brown
 
 " 特殊文字があると表示がずれる問題の対策
 " のはずが、有効にすると悲惨なことに
