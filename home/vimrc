@@ -38,7 +38,7 @@ Bundle 'scrooloose/syntastic'
 Bundle "Shougo/unite.vim"
 
 " insert modeで開始
-" let g:unite_enable_start_insert = 0
+let g:unite_enable_start_insert = 1
 
 " 大文字小文字を区別しない
 let g:unite_enable_ignore_case = 1
@@ -53,7 +53,14 @@ nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer -default-act
 " unite grep で候補を選択した時にタブで開くようにする
 "call unite#custom_default_action('grep', 'tabopen')
 
-
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,b :<C-u>Unite buffer<CR>
+nnoremap <silent> ,f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,df :<C-u>UniteWithBufferDir -buffer-name=files file -default-action=tabopen<CR>
+nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,u :<C-u>Unite file_mru buffer<CR>
 
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 
@@ -109,6 +116,7 @@ map <C-p> :cp<CR>
 
 
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_force_overwrite_completefunc=1
 
 syntax on
 filetype plugin on
