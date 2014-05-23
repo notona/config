@@ -3,5 +3,6 @@
 [core]
   pager = less -r
   editor = vim
+  autocrlf = false
 [alias]
   st = status -sb
