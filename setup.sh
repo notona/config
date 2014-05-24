@@ -5,7 +5,7 @@ set -ux pipefail
 
 chsh -s /bin/zsh
 
-cp -r ./home/bin ~/bin
+cp -r ./home/local ~/
 mkdir -vp ~/project
 #mkdir -vp ~/work
 #mkdir -vp ~/free
