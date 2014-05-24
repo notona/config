@@ -7,10 +7,6 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" L9 has need for FuzzyFinder
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-
 Bundle 'neocomplcache'
 Bundle 'gtags.vim'
 
