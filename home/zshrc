@@ -87,4 +87,4 @@ alias diff="diff -u"
 # zsh 補完をカーソルで選択する
 zstyle ':completion:*:default' menu select=1
 
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/local/bin
