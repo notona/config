@@ -28,8 +28,27 @@ vim -c BundleInstall! -c ":q" -c ":q"
 # install vimproc
 (
   cd ~/.vim/bundle/vimproc
-  make -f make_unix.mak
+  case ${OSTYPE} in
+    cygwin*)
+      make -f make_cygwin.mak
+      ;;
+    linux*)
+      make -f make_unix.mak
+      ;;
+  esac
 )
+
+# ag はマルチバイトに対応していないので
+# pt をインストールする
+# http://blog.monochromegane.com/blog/2014/01/16/the-platinum-searcher/
+case ${OSTYPE} in
+  cygwin*)
+    cp pt/pt.exe ~/local/bin/
+    ;;
+  linux*)
+    cp pt/pt_linux_x64 ~/local/bin/
+    ;;
+esac
 
 # gtags.vim の最新版はバグってるのでバージョンを落とす
 (
