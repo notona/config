@@ -8,10 +8,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'neocomplcache'
-Bundle 'gtags.vim'
-
-" for sytax highlight of twig
-Bundle 'django.vim'
 
 " for faster execution
 Bundle 'quickrun.vim'
@@ -51,20 +47,35 @@ nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer -default-act
 
 let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
+"let g:unite_source_file_rec_min_cache_files = 10
 nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,b :<C-u>Unite buffer<CR>
 nnoremap <silent> ,f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,df :<C-u>UniteWithBufferDir -buffer-name=files file -default-action=tabopen<CR>
+nnoremap <silent> ,d :<C-u>UniteWithBufferDir -buffer-name=files file -default-action=tabopen<CR>
 nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,u :<C-u>Unite file_mru buffer<CR>
+"nnoremap <silent> ,e  :<C-u>Unite file_rec/async:<CR>
 
+"nnoremap <silent> ,p :<C-u>call <SID>unite_project('-start-insert')<CR>
+
+"function! s:unite_project(...)
+"  let opts = (a:0 ? join(a:000, ' ') : '')
+"  let dir = unite#util#path2project_directory(expand('%'))
+"  execute 'Unite' opts 'file_rec:' . dir
+"endfunction
+
+"call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
+"let g:unite_source_rec_max_cache_files = 48000
+"let g:unite_source_rec_unit = 10000
+"let g:unite_source_file_rec_min_cache_files = 5
+let g:unite_source_rec_min_cache_files = 1
 
 " unite grep に ag(The Silver Searcher) を使う
 if executable('pt')
   let g:unite_source_grep_command = 'pt'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor '
   let g:unite_source_grep_recursive_opt = ''
- endif
+endif
 
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 
@@ -92,22 +103,13 @@ let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
-" -----------------------
-" FuzzyFinder.vim
-" -----------------------
-" need for FufMruFile
-let g:fuf_modesDisable = []
-
-nnoremap <Space>f f
-nnoremap <Space>F F
-nnoremap f <Nop>
-nnoremap <silent> fc :<C-u>FufRenewCache!<CR>
-nnoremap <silent> fb :<C-u>FufBuffer!<CR>
-nnoremap <silent> ff :<C-u>FufFile!<C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-nnoremap <silent> fm :<C-u>FufMruFile!<CR>
-nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
-nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile!<C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
-nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
+"nnoremap <silent> fc :<C-u>FufRenewCache!<CR>
+"nnoremap <silent> fb :<C-u>FufBuffer!<CR>
+"nnoremap <silent> ff :<C-u>FufFile!<C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+"nnoremap <silent> fm :<C-u>FufMruFile!<CR>
+"nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
+"nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile!<C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
+"nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
 
 " -----------------------
 " gtags
