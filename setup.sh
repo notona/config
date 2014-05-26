@@ -47,7 +47,7 @@ case ${OSTYPE} in
     cp pt/pt.exe ~/local/bin/
     ;;
   linux*)
-    cp pt/pt_linux_x64 ~/local/bin/
+    cp pt/pt_linux_x64 ~/local/bin/pt
     ;;
 esac
 
