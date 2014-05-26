@@ -14,7 +14,8 @@ mkdir -vp ~/tmp
 mkdir -vp ~/tmp/vim
 mkdir -vp ~/tmp/vim/swap
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+mkdir -p ~/.vim/bundle
+git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
 ROOT_DIR=`pwd`
 ln -sfn ${ROOT_DIR}/home/vimrc ~/.vimrc
@@ -23,7 +24,7 @@ ln -sfn ${ROOT_DIR}/home/zshrc ~/.zshrc
 ln -sfn ${ROOT_DIR}/home/tmux.conf ~/.tmux.conf
 ln -sfn ${ROOT_DIR}/home/gitconfig ~/.gitconfig
 
-vim -c BundleInstall! -c ":q" -c ":q"
+vim -c NeoBundleInstall! -c ":q" -c ":q"
 
 # install vimproc
 (
@@ -50,10 +51,3 @@ case ${OSTYPE} in
     ;;
 esac
 
-# gtags.vim の最新版はバグってるのでバージョンを落とす
-(
-  cd ~/.vim/bundle/gtags.vim
-  git checkout refs/tags/0.5
-)
-
-#mkdir -vp ~/tmp/gtags

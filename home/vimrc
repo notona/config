@@ -1,33 +1,42 @@
 set nocompatible
 
 " -----------------------
-" config for vundle
+" config for NeoVundle
 " -----------------------
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
-Bundle 'neocomplcache'
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+  call neobundle#rc(expand('~/.vim/bundle/'))
+endif
+
+" for code completion
+NeoBundle 'neocomplcache'
 
 " for faster execution
-Bundle 'quickrun.vim'
+NeoBundle 'quickrun.vim'
 
 " for git
-Bundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 
 " for svn
-Bundle 'vcscommand.vim'
+NeoBundle 'vcscommand.vim'
 
 " easier to comment
-Bundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdcommenter'
 
-Bundle 'kien/ctrlp.vim'
+" easier to access file on project
+NeoBundle 'kien/ctrlp.vim'
 
-Bundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc'
 
-Bundle 'scrooloose/syntastic'
+" for syntax check
+NeoBundle 'scrooloose/syntastic'
 
-Bundle "Shougo/unite.vim"
+" ファイラみたいな
+" vimfiter はないと Unite file がまともに動かないので入れる
+NeoBundle "Shougo/unite.vim"
+NeoBundle 'Shougo/vimfiler.vim'
 
 " insert modeで開始
 let g:unite_enable_start_insert = 1
