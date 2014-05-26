@@ -34,11 +34,13 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'scrooloose/syntastic'
 
 " ファイラみたいな
-" vimfiter はないと Unite file がまともに動かないので入れる
 NeoBundle "Shougo/unite.vim"
-NeoBundle 'Shougo/vimfiler.vim'
 
+" L9 has need for FuzzyFinder
+NeoBundle 'L9'
+NeoBundle 'FuzzyFinder'
 
+" color scheme
 NeoBundle 'sjl/badwolf'
 colorscheme badwolf
 
@@ -116,14 +118,27 @@ let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
-"nnoremap <silent> fc :<C-u>FufRenewCache!<CR>
-"nnoremap <silent> fb :<C-u>FufBuffer!<CR>
-"nnoremap <silent> ff :<C-u>FufFile!<C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-"nnoremap <silent> fm :<C-u>FufMruFile!<CR>
-"nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
-"nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile!<C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
-"nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
+" -----------------------
+" FuzzyFinder.vim
+" -----------------------
+" need for FufMruFile
+let g:fuf_modesDisable = []
 
+nnoremap <Space>f f
+nnoremap <Space>F F
+nnoremap f <Nop>
+
+nnoremap <silent> fc :<C-u>FufRenewCache!<CR>
+nnoremap <silent> fb :<C-u>FufBuffer!<CR>
+nnoremap <silent> ff :<C-u>FufFile!<C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+nnoremap <silent> fm :<C-u>FufMruFile!<CR>
+nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
+nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile!<C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
+nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
+
+" -----------------------
+" neocomplcache
+" -----------------------
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_force_overwrite_completefunc=1
 
