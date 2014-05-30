@@ -66,24 +66,23 @@ let g:unite_source_file_mru_limit = 200
 nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,b :<C-u>Unite buffer<CR>
 nnoremap <silent> ,f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,d :<C-u>UniteWithBufferDir -buffer-name=files file -default-action=tabopen<CR>
 nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,u :<C-u>Unite file_mru buffer<CR>
-"nnoremap <silent> ,e  :<C-u>Unite file_rec/async:<CR>
+nnoremap <silent> ,e  :<C-u>Unite file_rec/async:<CR>
+nnoremap <silent> ,p :<C-u>call <SID>unite_project('-start-insert')<CR>
 
-"nnoremap <silent> ,p :<C-u>call <SID>unite_project('-start-insert')<CR>
+let g:unite_source_rec_unit = 20000
+let g:unite_source_rec_async_command = 'ack -f --nofilter'
+call unite#custom#source('file_rec/async', 'ignore_pattern', '\(.idea\|zip\|swf\|png\|gif\|jpeg\|jpg\|\.git.*\)$')
+let g:unite_source_rec_max_cache_files = 20000
+"let g:unite_data_directory='~/cachecacheunite'
 
-"function! s:unite_project(...)
-"  let opts = (a:0 ? join(a:000, ' ') : '')
-"  let dir = unite#util#path2project_directory(expand('%'))
-"  execute 'Unite' opts 'file_rec:' . dir
-"endfunction
-
-"call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
-"let g:unite_source_rec_max_cache_files = 48000
-"let g:unite_source_rec_unit = 10000
-"let g:unite_source_file_rec_min_cache_files = 5
-let g:unite_source_rec_min_cache_files = 1
+let g:unite_source_rec_min_cache_files = 10
+function! s:unite_project(...)
+  let opts = (a:0 ? join(a:000, ' ') : '')
+  let dir = unite#util#path2project_directory(expand('%'))
+  execute 'Unite' opts 'file_rec/async:' . dir
+endfunction
 
 " unite grep に ag(The Silver Searcher) を使う
 if executable('pt')
@@ -147,7 +146,7 @@ filetype plugin on
 filetype indent on
 
 
-set viminfo='50,\"4000,:0,n~/.viminfo
+set viminfo='50,\"14000,:0,n~/.viminfo
 
 set encoding=utf-8
 set termencoding=utf-8
@@ -242,3 +241,5 @@ augroup BinaryXXD
   autocmd BufWritePost * if &binary | silent %!xxd -g 1
   autocmd BufWritePost * set nomod | endif
 augroup END
+
+
