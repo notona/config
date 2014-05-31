@@ -90,5 +90,5 @@ zstyle ':completion:*:default' menu select=1
 # init gvm
 [[ -s "${HOME}/.gvm/bin/gvm-init.sh" ]] && source "${HOME}/.gvm/bin/gvm-init.sh"
 
-export PATH=$PATH:~/local/bin
+export PATH="${PATH}:${HOME}/local/bin"
 
