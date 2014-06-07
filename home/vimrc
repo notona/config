@@ -73,7 +73,9 @@ nnoremap <silent> ,p :<C-u>call <SID>unite_project('-start-insert')<CR>
 
 let g:unite_source_rec_unit = 20000
 let g:unite_source_rec_async_command = 'ack -f --nofilter'
-call unite#custom#source('file_rec/async', 'ignore_pattern', '\(.idea\|zip\|swf\|png\|gif\|jpeg\|jpg\|\.git.*\)$')
+if exists("unite#custom#source")
+  call unite#custom#source('file_rec/async', 'ignore_pattern', '\(\.idea.*\|zip\|swf\|png\|gif\|jpeg\|jpg\|\.git.*\)$')
+endif
 let g:unite_source_rec_max_cache_files = 20000
 "let g:unite_data_directory='~/cachecacheunite'
 
