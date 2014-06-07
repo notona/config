@@ -16,6 +16,7 @@ mkdir -vp ~/tmp/vim/swap
 
 mkdir -p ~/.vim/bundle
 git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+git clone https://github.com/Shougo/vimproc.vim ~/.vim/bundle/vimproc
 
 ROOT_DIR=`pwd`
 ln -sfn ${ROOT_DIR}/home/vimrc ~/.vimrc

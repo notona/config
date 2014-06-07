@@ -25,11 +25,6 @@ NeoBundle 'vcscommand.vim'
 " easier to comment
 NeoBundle 'scrooloose/nerdcommenter'
 
-" easier to access file on project
-NeoBundle 'kien/ctrlp.vim'
-
-NeoBundle 'Shougo/vimproc'
-
 " for syntax check
 NeoBundle 'scrooloose/syntastic'
 
@@ -42,7 +37,11 @@ NeoBundle 'FuzzyFinder'
 
 " color scheme
 NeoBundle 'sjl/badwolf'
-colorscheme badwolf
+try
+  colorscheme badwolf
+catch /^Vim\%((\a\+)\)\=:E185/
+    " none
+endtry
 
 " insert modeで開始
 let g:unite_enable_start_insert = 1
