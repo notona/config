@@ -24,9 +24,8 @@ ln -sfn ${ROOT_DIR}/home/zshrc ~/.zshrc
 ln -sfn ${ROOT_DIR}/home/tmux.conf ~/.tmux.conf
 ln -sfn ${ROOT_DIR}/home/gitconfig ~/.gitconfig
 
-vim -c NeoBundleInstall! -c ":q" -c ":q"
-
 # install vimproc
+# NeoBundleInstall の前に実行しないとエラーになる
 (
   cd ~/.vim/bundle/vimproc
   case ${OSTYPE} in
@@ -38,6 +37,8 @@ vim -c NeoBundleInstall! -c ":q" -c ":q"
       ;;
   esac
 )
+
+vim -c NeoBundleInstall! -c ":q" -c ":q"
 
 # ag はマルチバイトに対応していないので
 # pt をインストールする
