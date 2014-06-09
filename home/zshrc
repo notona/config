@@ -90,5 +90,8 @@ zstyle ':completion:*:default' menu select=1
 # init gvm
 [[ -s "${HOME}/.gvm/bin/gvm-init.sh" ]] && source "${HOME}/.gvm/bin/gvm-init.sh"
 
+# init phpbrew
+[[ -s "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
+
 export PATH="${PATH}:${HOME}/local/bin"
 
