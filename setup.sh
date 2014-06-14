@@ -34,7 +34,8 @@ ln -sfn ${ROOT_DIR}/home/gitconfig ~/.gitconfig
       make -f make_cygwin.mak
       ;;
     linux*)
-      make -f make_unix.mak
+    darwin*)
+      make
       ;;
   esac
 )
@@ -51,5 +52,7 @@ case ${OSTYPE} in
   linux*)
     cp pt/pt_linux_x64 ~/local/bin/pt
     ;;
+  darwin*)
+    cp pt/pt_maxosx_64 ~/local/bin/pt
+    ;;
 esac
-

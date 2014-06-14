@@ -79,7 +79,16 @@ export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
 export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
-alias ls="ls -F --color"
+case "${OSTYPE}" in
+darwin*)
+  alias ls="ls -G"
+  alias ll="ls -lG"
+  ;;
+cygwin* | linux*)
+  alias ls='ls --color'
+  alias ll='ls -l --color'
+  ;;
+esac
 alias lv="lv -c"
 alias less="less -r"
 alias diff="diff -u"
@@ -94,4 +103,6 @@ zstyle ':completion:*:default' menu select=1
 [[ -s "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
 
 export PATH="${PATH}:${HOME}/local/bin"
+
+
 
