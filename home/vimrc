@@ -38,12 +38,7 @@ NeoBundle 'L9'
 NeoBundle 'FuzzyFinder'
 
 " color scheme
-NeoBundle 'sjl/badwolf'
-try
-  colorscheme badwolf
-catch /^Vim\%((\a\+)\)\=:E185/
-    " none
-endtry
+colorscheme ron
 
 " insert modeで開始
 let g:unite_enable_start_insert = 1
