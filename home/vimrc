@@ -12,7 +12,8 @@ if has('vim_starting')
 endif
 
 " for code completion
-NeoBundle 'neocomplcache'
+NeoBundle 'Shougo/neocomplete.vim'
+"NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
 
 " for faster execution
 NeoBundle 'quickrun.vim'
