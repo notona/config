@@ -38,6 +38,12 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'L9'
 NeoBundle 'FuzzyFinder'
 
+" for python complition
+NeoBundle 'davidhalter/jedi-vim'
+
+" quickrun の実行とかぶるので変更
+let g:jedi#rename_command = "<leader>R"
+
 " color scheme
 colorscheme ron
 
