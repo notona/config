@@ -104,7 +104,7 @@ zstyle ':completion:*:default' menu select=1
 # init phpbrew
 [[ -s "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
 
-export PATH="${PATH}:${HOME}/local/bin"
+export PATH="/usr/local/bin:${PATH}:${HOME}/local/bin"
 
 
 
