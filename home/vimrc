@@ -42,11 +42,21 @@ NeoBundle 'FuzzyFinder'
 " for python complition
 NeoBundle 'davidhalter/jedi-vim'
 
+" -----------------------
+" neocomplete
+" -----------------------
+let g:neocomplete#enable_at_startup = 1
+
 " quickrun の実行とかぶるので変更
 let g:jedi#rename_command = "<leader>R"
 
+" neocomplete と jedi をうまいこと共存させるための設定
+" http://kozo2.hatenablog.com/entry/2014/01/22/050714
+autocmd FileType python setlocal omnifunc=jedi#completions
 " 補完の最初の項目が選択された状態だと使いにくいためオフにする
-let g:jedi#popup_select_first=0
+"let g:jedi#popup_select_first=0
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
 
 colorscheme ron
 
@@ -149,12 +159,6 @@ nnoremap <silent> fm :<C-u>FufMruFile!<CR>
 nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
 nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile!<C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
 nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
-
-" -----------------------
-" neocomplcache
-" -----------------------
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_force_overwrite_completefunc=1
 
 syntax on
 filetype plugin on
