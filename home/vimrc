@@ -189,6 +189,12 @@ set directory=~/tmp/vim/swap
 set laststatus=2
 set statusline=[%n]\ %t\ %y%{GetStatusEx()}\ %m%h%r=%l/%L,%c%V\ %P
 
+" 環境によってデフォルトの色設定が異なるので明示的に指定する
+highlight Normal ctermbg=black ctermfg=white
+highlight StatusLine term=none cterm=none ctermfg=black ctermbg=grey
+highlight CursorLine term=none cterm=none ctermfg=none ctermbg=darkgray
+highlight Pmenu ctermbg=darkblue
+
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue
 match ZenkakuSpace /　/
 
