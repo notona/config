@@ -115,7 +115,8 @@ filetype plugin indent on
 
 " 特殊文字があると表示がずれる問題の対策
 " のはずが、有効にすると悲惨なことに
-set ambiwidth=double
+"set ambiwidth=double
+set ambiwidth=single
 
 " -----------------------
 " nerdcommenter
