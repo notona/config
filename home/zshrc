@@ -104,6 +104,9 @@ zstyle ':completion:*:default' menu select=1
 # init phpbrew
 [[ -s "${HOME}/.phpbrew/bashrc" ]] && source "${HOME}/.phpbrew/bashrc"
 
+# .zshrc.local にそのマシン固有の設定を記述する
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
 export PATH="/usr/local/bin:${PATH}:${HOME}/local/bin"
 
 
