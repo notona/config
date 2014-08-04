@@ -34,6 +34,8 @@ ln -sfn ${ROOT_DIR}/home/gitconfig ~/.gitconfig
       make -f make_cygwin.mak
       ;;
     linux*)
+      make
+      ;;
     darwin*)
       make
       ;;
