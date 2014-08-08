@@ -85,7 +85,7 @@ darwin*)
   alias ls="ls -G"
   alias ll="ls -lG"
   ;;
-cygwin* | linux*)
+cygwin* | linux* | msys*)
   alias ls='ls --color'
   alias ll='ls -l --color'
   ;;
