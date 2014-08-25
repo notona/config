@@ -12,8 +12,7 @@ if has('vim_starting')
 endif
 
 " for code completion
-NeoBundle 'Shougo/neocomplete.vim'
-"NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache.vim'
 
 " for faster execution
 NeoBundle 'quickrun.vim'
@@ -43,14 +42,15 @@ NeoBundle 'FuzzyFinder'
 NeoBundle 'davidhalter/jedi-vim'
 
 " -----------------------
-" neocomplete
+" neocomplcache
 " -----------------------
-let g:neocomplete#enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_force_overwrite_completefunc=1
 
 " quickrun の実行とかぶるので変更
 let g:jedi#rename_command = "<leader>R"
 
-" neocomplete と jedi をうまいこと共存させるための設定
+" neocomplcache と jedi をうまいこと共存させるための設定
 " http://kozo2.hatenablog.com/entry/2014/01/22/050714
 autocmd FileType python setlocal omnifunc=jedi#completions
 " 補完の最初の項目が選択された状態だと使いにくいためオフにする
