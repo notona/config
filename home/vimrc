@@ -41,6 +41,9 @@ NeoBundle 'FuzzyFinder'
 " for python complition
 NeoBundle 'davidhalter/jedi-vim'
 
+" for golang
+NeoBundle 'fatih/vim-go'
+
 " -----------------------
 " neocomplcache
 " -----------------------
