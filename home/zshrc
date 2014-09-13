@@ -108,6 +108,7 @@ zstyle ':completion:*:default' menu select=1
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 export PATH="/usr/local/bin:${PATH}:${HOME}/local/bin"
+export GOPATH="${HOME}/go"
 
 
 
