@@ -3,5 +3,5 @@ set -eux
 cd ~/Downloads
 while IFS= read -r -d $'\0' file; do
   mv "$file" "$HOME/Dropbox/Image/`echo $file | perl -pe 's/^\.\/chx_(.*)$/$1/'`"
-done < <( find -type f -name 'chx_*' -print0)
+done < <( find . -type f -name 'chx_*' -print0)
 
