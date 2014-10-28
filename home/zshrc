@@ -85,10 +85,12 @@ case "${OSTYPE}" in
 darwin*)
   alias ls="ls -G"
   alias ll="ls -lG"
+  alias l="ls -lG"
   ;;
 cygwin* | linux* | msys*)
   alias ls='ls --color'
   alias ll='ls -l --color'
+  alias l='ls -l --color'
   ;;
 esac
 alias lv="lv -c"
