@@ -84,13 +84,13 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 case "${OSTYPE}" in
 darwin*)
   alias ls="ls -G"
-  alias ll="ls -lG"
-  alias l="ls -lG"
+  alias ll="ls -lhG"
+  alias l="ls -lhG"
   ;;
 cygwin* | linux* | msys*)
   alias ls='ls --color'
-  alias ll='ls -l --color'
-  alias l='ls -l --color'
+  alias ll='ls -lh --color'
+  alias l='ls -lh --color'
   ;;
 esac
 alias lv="lv -c"
