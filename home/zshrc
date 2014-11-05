@@ -97,6 +97,7 @@ alias lv="lv -c"
 alias less="less -r"
 alias diff="diff -u"
 alias py="python3"
+alias .="cd .."
 
 # zsh 補完をカーソルで選択する
 zstyle ':completion:*:default' menu select=1
