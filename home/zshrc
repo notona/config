@@ -83,9 +83,9 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 case "${OSTYPE}" in
 darwin*)
-  alias ls="ls -G"
-  alias ll="ls -lhG"
-  alias l="ls -lhG"
+  alias ls="CLICOLOR_FORCE=1 ls -G"
+  alias ll="CLICOLOR_FORCE=1 ls -lhG"
+  alias l="CLICOLOR_FORCE=1 ls -lhG"
   ;;
 cygwin* | linux* | msys*)
   alias ls='ls --color'
@@ -93,7 +93,7 @@ cygwin* | linux* | msys*)
   alias l='ls -lh --color'
   ;;
 esac
-alias lv="lv -c"
+
 alias less="less -r"
 alias diff="diff -u"
 alias py="python3"
