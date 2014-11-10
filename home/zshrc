@@ -78,7 +78,10 @@ bindkey "^N" history-beginning-search-forward-end
 #色の設定
 export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
 export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
-export GREP_OPTIONS='--color=always'
+
+# xargs perl でトラブルに巻き込まれるのでコメントアウト
+#export GREP_OPTIONS='--color=always'
+
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 case "${OSTYPE}" in
