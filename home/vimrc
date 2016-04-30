@@ -10,7 +10,6 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
   call neobundle#begin(expand('~/.vim/bundle/'))
   NeoBundleFetch 'Shougo/neobundle.vim'
-  call neobundle#end()
 endif
 
 " for code completion
@@ -46,6 +45,8 @@ NeoBundle 'davidhalter/jedi-vim'
 " for golang
 NeoBundle 'fatih/vim-go'
 
+call neobundle#end()
+
 " -----------------------
 " neocomplcache
 " -----------------------
@@ -63,7 +64,8 @@ autocmd FileType python setlocal omnifunc=jedi#completions
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 
-colorscheme ron
+"colorscheme ron
+colorscheme desert
 
 " insert modeで開始
 let g:unite_enable_start_insert = 1
