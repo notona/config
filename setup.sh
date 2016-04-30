@@ -34,7 +34,7 @@ ln -sfn ${ROOT_DIR}/home/gitconfig ~/.gitconfig
       make -f make_cygwin.mak
       ;;
     msys*)
-      make -f make_cygwin.mak
+      mingw32-make -f make_mingw64.mak
       ;;
     linux*)
       make
