@@ -44,3 +44,9 @@ send_key(original_key,replace_key)
 vk1Csc079 & a::send_key("^a","{Home}")
 vk1Csc079 & e::send_key("^e","{End}")
 vk1Csc079 & Space:: Send, {LWin}
+
+; Shift + Alt + Left で左一行を選択
+!+Left:: Send, +{Home}
+
+; Shift + Alt + Left で右一行を選択
+!+Right:: Send, +{End}
