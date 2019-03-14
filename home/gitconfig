@@ -7,5 +7,7 @@
 [alias]
   st = status -sb
 [user]
-	name = notona
-	email = notona@gmail.com
+  name = notona
+  email = notona@gmail.com
+[url "git@github.com:"]
+  pushinsteadof = https://github.com/
