@@ -11,3 +11,5 @@
   email = notona@gmail.com
 [url "git@github.com:"]
   pushinsteadof = https://github.com/
+[log]
+  follow = true
