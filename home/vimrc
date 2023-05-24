@@ -1,139 +1,18 @@
 set nocompatible
 set t_Co=256
 
-" -----------------------
-" config for NeoVundle
-" -----------------------
-filetype off
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#begin(expand('~/.vim/bundle/'))
-  NeoBundleFetch 'Shougo/neobundle.vim'
-endif
-
-" for code completion
-NeoBundle 'Shougo/neocomplcache.vim'
-
-" for faster execution
-NeoBundle 'quickrun.vim'
-
-" for git
-NeoBundle 'tpope/vim-fugitive'
-
-" for svn
-NeoBundle 'vcscommand.vim'
-
+call plug#begin()
 " easier to comment
-NeoBundle 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " for syntax check
-NeoBundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
-" ファイラみたいな
-NeoBundle "Shougo/unite.vim"
+call plug#end()
 
-NeoBundle 'Shougo/vimproc'
-
-" L9 has need for FuzzyFinder
-NeoBundle 'L9'
-NeoBundle 'FuzzyFinder'
-
-" for python complition
-NeoBundle 'davidhalter/jedi-vim'
-
-" for golang
-NeoBundle 'fatih/vim-go'
-
-call neobundle#end()
-
-" -----------------------
-" neocomplcache
-" -----------------------
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_force_overwrite_completefunc=1
-
-" quickrun の実行とかぶるので変更
-let g:jedi#rename_command = "<leader>R"
-
-" neocomplcache と jedi をうまいこと共存させるための設定
-" http://kozo2.hatenablog.com/entry/2014/01/22/050714
-autocmd FileType python setlocal omnifunc=jedi#completions
-" 補完の最初の項目が選択された状態だと使いにくいためオフにする
-"let g:jedi#popup_select_first=0
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-
-"colorscheme ron
-colorscheme desert
-
-" insert modeで開始
-let g:unite_enable_start_insert = 1
-
-" 大文字小文字を区別しない
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-
-" grep検索
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer -default-action=tabopen<CR>
-
-" カーソル位置の単語をgrep検索
-nnoremap <silent> ,cg :<C-u>Unite grep:! -buffer-name=search-buffer -default-action=tabopen<CR><C-R><C-W>
-nnoremap <silent> ,cd :<C-u>Unite grep:. -buffer-name=search-buffer -default-action=tabopen<CR><C-R><C-W>
-
-" unite grep で候補を選択した時にタブで開くようにする
-"call unite#custom_default_action('grep', 'tabopen')
-
-let g:unite_source_history_yank_enable =1
-let g:unite_source_file_mru_limit = 200
-"let g:unite_source_file_rec_min_cache_files = 10
-nnoremap <silent> ,y :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,b :<C-u>Unite buffer<CR>
-nnoremap <silent> ,f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,u :<C-u>Unite file_mru buffer<CR>
-nnoremap <silent> ,e  :<C-u>Unite file_rec/async:<CR>
-nnoremap <silent> ,p :<C-u>call <SID>unite_project('-start-insert')<CR>
-
-let g:unite_source_rec_unit = 20000
-let g:unite_source_rec_async_command = 'ack -f --nofilter'
-"if exists("unite#custom#source")
-"  call unite#custom#source('file_rec/async', 'ignore_pattern', '\(\.idea.*\|zip\|swf\|png\|gif\|jpeg\|jpg\|\.git.*\)$')
-"endif
-if exists("unite#custom#source")
-call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$') 
-endif
-let g:unite_source_rec_max_cache_files = 20000
-"let g:unite_data_directory='~/cachecacheunite'
-
-let g:unite_source_rec_min_cache_files = 10
-function! s:unite_project(...)
-  let opts = (a:0 ? join(a:000, ' ') : '')
-  let dir = unite#util#path2project_directory(expand('%'))
-  execute 'Unite' opts 'file_rec/async:' . dir
-endfunction
-
-" unite grep に ag(The Silver Searcher) を使う
-if executable('pt')
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor '
-  let g:unite_source_grep_recursive_opt = ''
-endif
-
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-
-let g:quickrun_config = {
-    \   "_" : {
-    \       "runner" : "vimproc",
-    \       "runner/vimproc/updatetime" : 40,
-    \       "running_mark": ">>>",
-    \       "hook/time/enable": 1,
-    \       "outputter/quickfix": "&errorformat",
-    \}
-\}
-let g:quickrun_config["python"] = {
-    \ 'exec' : ['python3 %s', '']
-\}
+" for language server
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
 filetype plugin indent on
 
@@ -141,20 +20,6 @@ filetype plugin indent on
 " のはずが、有効にすると悲惨なことに
 "set ambiwidth=double
 set ambiwidth=single
-
-" -----------------------
-" nerdcommenter
-" -----------------------
-" コメントした後に挿入するスペース数
-let NERDSpaceDelims = 1
-nmap ,, <Plug>NERDCommenterToggle
-vmap ,, <Plug>NERDCommenterToggle
-
-" -----------------------
-" FuzzyFinder.vim
-" -----------------------
-" need for FufMruFile
-let g:fuf_modesDisable = []
 
 nnoremap <Space>f f
 nnoremap <Space>F F
