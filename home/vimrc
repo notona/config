@@ -10,6 +10,7 @@ Plug 'scrooloose/nerdcommenter'
 " Plug 'scrooloose/syntastic'
 
 " for language server
+" :LspInstallServer が必要
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
