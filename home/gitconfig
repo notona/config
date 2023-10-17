@@ -13,3 +13,5 @@
   pushinsteadof = https://github.com/
 [log]
   follow = true
+[pull]
+	rebase = true
