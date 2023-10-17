@@ -74,6 +74,7 @@ set smarttab
 
 "スワップファイルの出力先を ~/.vim/tmp/swap に変更
 set directory=~/tmp/vim/swap
+set noswapfile
 
 "set tabstop=4
 "set softtabstop=4
