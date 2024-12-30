@@ -10,6 +10,7 @@ mkdir -vp ~/project
 #mkdir -vp ~/work
 mkdir -vp ~/ext
 mkdir -vp ~/tmp
+mkdir -vp ~/.npm-global
 
 # https://github.com/junegunn/vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -19,4 +20,5 @@ ln -sfn ${ROOT_DIR}/home/vimrc ~/.vimrc
 ln -sfn ${ROOT_DIR}/home/zshrc ~/.zshrc
 ln -sfn ${ROOT_DIR}/home/tmux.conf ~/.tmux.conf
 ln -sfn ${ROOT_DIR}/home/gitconfig ~/.gitconfig
+ln -sfn ${ROOT_DIR}/home/npmrc ~/.npmrc
 
